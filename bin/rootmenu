@@ -1,0 +1,11 @@
+#!/bin/bash
+xev -root -event button | grep --line-buffered -A 3 'ButtonRelease' | grep -o --line-buffered --color=never 'button..' | while read button; do
+    case $button in
+        # occurs on clicking desktop
+        "button 1") dboxmenu ;;
+        "button 2") BspwmWindowMenu ;;
+        "button 3") BspwmDesktopMenu ;;
+        "button 4") bspc desktop -f next ;;
+        "button 5") bspc desktop -f prev ;;
+    esac
+done
