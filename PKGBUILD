@@ -11,7 +11,7 @@ depends=('dmenu-manjaro'
 	'xdotool'
 	'wmutils'
 	'xev'
-	'xdg-open')
+	'xdg-utils')
 makedepends=('git')
 source=("git://github.com/Chrysostomus/$pkgname")
 md5sums=('SKIP')
