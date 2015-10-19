@@ -22,7 +22,7 @@ YP=$Y
 [[ $YP -gt $maxy ]] && YP=$maxy
 
 #DMENU='dmenu $DMENU_OPTIONS'
-choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybinds" | dmenu -i -l $lines -y $YP -x $XP -w $menu_widht -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB)
+choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybinds\nExit" | dmenu -i -l $lines -y $YP -x $XP -w $menu_widht -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB)
 
 case "$choice" in
   Run) dboxrun & ;;
@@ -32,4 +32,5 @@ case "$choice" in
   Editor) $GUI_EDITOR & ;;
   PackageManager) TERMINAL_CMD -e pacli & ;;
   Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
+  Exit) dlogoutmenu & ;;
 esac
