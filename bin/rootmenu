@@ -1,11 +1,4 @@
 #!/bin/bash
-#Make sure only one instance of rootmenu is run
-if ! mkdir /tmp/rootmenu.lock; then
-    printf "Failed to aquire lock.\n" >&2
-    exit 1
-fi
-trap 'rm -rf /tmp/rootmenu.lock' EXIT  # remove the lockdir on exit
-
 #Setup and source configurationfile
 if ! [ -f "$HOME/.rootmenurc" ]; then
 	cat > $HOME/.rootmenurc <<EOL
@@ -19,13 +12,13 @@ fi
 . $HOME/.rootmenurc
 
 #monitor events with xev and act accordingly
-xev -root -event button | grep --line-buffered -A 3 'ButtonRelease' | grep -o --line-buffered --color=never 'button..' | while read button; do
+xev -root -event button | awk 'BEGIN { RS=""; } /ButtonPress/ { print +$20; fflush(); }' | while read button; do
     case $button in
         # occurs on clicking desktop
-        "button 1") $button1action ;;
-        "button 2") $button2action ;;
-        "button 3") $button3action ;;
-        "button 4") $button4action ;;
-        "button 5") $button5action ;;
+        1) $button1action ;;
+        2) $button2action ;;
+        3) $button3action ;;
+        4) $button4action ;;
+        5) $button5action ;;
     esac
 done
