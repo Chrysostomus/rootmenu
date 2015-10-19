@@ -1,11 +1,31 @@
 #!/bin/bash
+#Make sure only one instance of rootmenu is run
+if ! mkdir /tmp/rootmenu.lock; then
+    printf "Failed to aquire lock.\n" >&2
+    exit 1
+fi
+trap 'rm -rf /tmp/rootmenu.lock' EXIT  # remove the lockdir on exit
+
+#Setup and source configurationfile
+if ! [ -f "$HOME/.rootmenurc" ]; then
+	cat > $HOME/.rootmenurc <<EOL
+button1action="dboxmenu"
+button2action="BspwmWindowMenu"
+button3action="BspwmDesktopMenu"
+button4action="bspc desktop -f next"
+button5action="bspc desktop -f prev"
+EOL
+fi
+. $HOME/.rootmenurc
+
+#monitor events with xev and act accordingly
 xev -root -event button | grep --line-buffered -A 3 'ButtonRelease' | grep -o --line-buffered --color=never 'button..' | while read button; do
     case $button in
         # occurs on clicking desktop
-        "button 1") dboxmenu ;;
-        "button 2") BspwmWindowMenu ;;
-        "button 3") BspwmDesktopMenu ;;
-        "button 4") bspc desktop -f next ;;
-        "button 5") bspc desktop -f prev ;;
+        "button 1") $button1action ;;
+        "button 2") $button2action ;;
+        "button 3") $button3action ;;
+        "button 4") $button4action ;;
+        "button 5") $button5action ;;
     esac
 done
