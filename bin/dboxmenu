@@ -26,10 +26,10 @@ choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybind
 
 case "$choice" in
   Run) dboxrun & ;;
-  Terminal) terminal & ;;
+  Terminal) TERMINAL_CMD & ;;
   Files) spacefm & ;; #xdg-open ~
   Browser) xdg-open https://manjaro.github.io/ & ;;
   Editor) $GUI_EDITOR & ;;
-  PackageManager) terminal -e yaourt-gui & ;;
+  PackageManager) TERMINAL_CMD -e pacli & ;;
   Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
 esac
