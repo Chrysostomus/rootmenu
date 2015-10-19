@@ -3,7 +3,7 @@
 pkgname=rootmenu
 pkgver=0.1
 pkgrel=1
-pkgdesc="Scripts for controlling bspwm"
+pkgdesc="A wm independent desktop menu"
 arch=(any)
 url="https://github.com/Chrysostomus/$pkgname"
 license=MIT
