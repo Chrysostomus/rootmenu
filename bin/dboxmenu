@@ -27,8 +27,8 @@ choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybind
 case "$choice" in
   Run) dboxrun & ;;
   Terminal) TERMINAL_CMD & ;;
-  Files) spacefm & ;; #xdg-open ~
-  Browser) xdg-open https://manjaro.github.io/ & ;;
+  Files) spacefm || xdg-open ~ & ;; #xdg-open ~
+  Browser) midori || $BROWSER https://manjaro.github.io/ & ;;
   Editor) $GUI_EDITOR & ;;
   PackageManager) TERMINAL_CMD -e pacli & ;;
   Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
