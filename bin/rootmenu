@@ -12,14 +12,14 @@ fi
 . $HOME/.rootmenurc
 
 #monitor events with xev and act accordingly
-xev -root -event button | awk -v b1="$button1action" -v b2="$button2action" -v b3="$button3action" -v b4="$button4action" -v b5="$button5action" '
+xev -root -event button | awk '
 BEGIN { RS=""; }
 /ButtonPress/ {
    switch(+$20) {
-	 case "1": system(b1); break;
-	 case "2": system(b2); break;
-	 case "3": system(b3); break;
-	 case "4": system(b4); break;
-	 case "5": system(b5); break;
+	 case "1": system("'" $button1action "'"); break;
+	 case "2": system("'" $button2action "'"); break;
+	 case "3": system("'" $button3action "'"); break;
+	 case "4": system("'" $button4action "'"); break;
+	 case "5": system("'" $button5action "'"); break;
    }
 }'
