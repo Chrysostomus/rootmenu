@@ -2,9 +2,9 @@
 #Setup and source configurationfile
 if ! [ -f "$HOME/.rootmenurc" ]; then
 	cat > $HOME/.rootmenurc <<EOL
-button1action="dboxmenu"
+button1action=""
 button2action="BspwmWindowMenu"
-button3action="BspwmDesktopMenu"
+button3action="dboxmenu"
 button4action="bspc desktop -f next"
 button5action="bspc desktop -f prev"
 EOL
