@@ -28,7 +28,7 @@ case "$choice" in
   Run) dboxrun & ;;
   Terminal) $TERMINAL_CMD & ;;
   Files) spacefm || xdg-open ~ & ;;
-  Browser) $BROWSER& ;;
+  Browser) $BROWSER & ;;
   Editor) $GUI_EDITOR & ;;
   PackageManager) $TERMINAL_CMD -e pacli & ;;
   Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
