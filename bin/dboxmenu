@@ -6,6 +6,9 @@ if ! [ -f "$HOME/.dmenurc" ]; then
 fi
 . $HOME/.dmenurc
 
+[[  $BROWSER && ${BROWSER-x} ]] && browser=$BROWSER || browser='midori'
+[[  $GUI_EDITOR && ${GUI_EDITOR-x} ]] && gui_editor=$GUI_EDITOR || gui_editor='midori'
+
 eval $(xdotool getmouselocation --shell)
 menu_widht=200
 monitor_widht=$(wattr w $(lsw -r))
@@ -28,8 +31,8 @@ case "$choice" in
   Run) dboxrun & ;;
   Terminal) $TERMINAL_CMD & ;;
   Files) spacefm || xdg-open ~ & ;;
-  Browser) $BROWSER & ;;
-  Editor) $GUI_EDITOR & ;;
+  Browser) $browser & ;;
+  Editor) $gui_editor & ;;
   PackageManager) $TERMINAL_CMD -e pacli & ;;
   Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
   Exit) dlogoutmenu & ;;
