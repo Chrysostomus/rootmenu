@@ -7,7 +7,7 @@ fi
 . $HOME/.dmenurc
 
 [[  $BROWSER && ${BROWSER-x} ]] && browser=$BROWSER || browser='midori'
-[[  $GUI_EDITOR && ${GUI_EDITOR-x} ]] && gui_editor=$GUI_EDITOR || gui_editor='midori'
+[[  $GUI_EDITOR && ${GUI_EDITOR-x} ]] && gui_editor=$GUI_EDITOR || gui_editor='gedit'
 
 eval $(xdotool getmouselocation --shell)
 menu_widht=200
