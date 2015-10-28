@@ -7,14 +7,15 @@ fi
 
 eval $(xdotool getmouselocation --shell)
 menu_widht=300
-monitor_widht=$(wattr w $(lsw -r))
-monitor_height=$(wattr h $(lsw -r))
-lines=20
-menu_height=$(echo "$lines * 23" | bc)
-maxx=$(echo "$monitor_widht - $menu_widht" | bc)
+#monitor_widht=$(wattr w $(lsw -r))
+#monitor_height=$(wattr h $(lsw -r))
+wattr wh $(lsw -r) | read monitor_widht monitor_height 
+lines=14
+menu_height=$((echo "$lines" * 23))
+maxx=$(("$monitor_widht" - "$menu_widht"))
 miny=$PANEL_HEIGHT
-maxy=$(echo "$monitor_height - $menu_height" | bc)
-XP=$(echo "$X - 15" | bc)
+maxy=$(("$monitor_height" - "$menu_height"))
+XP=$(("$X" - 15))
 [[ $XP -gt $maxx ]] && XP=$maxx
 YP=$Y
 [[ $YP -lt $miny ]] && YP=$miny
