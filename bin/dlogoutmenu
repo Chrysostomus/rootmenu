@@ -10,13 +10,13 @@ fi
 . $HOME/.dmenurc
 
 eval $(xdotool getmouselocation --shell)
-menu_widht=200
-wattr wh $(lsw -r) | read monitor_widht monitor_height 
+menu_width=200
+wattr wh $(lsw -r) | read monitor_width monitor_height 
 #monitor_widht=$(wattr w $(lsw -r))
 #monitor_height=$(wattr h $(lsw -r))
 lines=14
 menu_height=$(("$lines" * 23))
-maxx=$(("$monitor_width" - "$menu_widht"))
+maxx=$(("$monitor_width" - "$menu_width"))
 miny=$PANEL_HEIGHT
 maxy=$(("$monitor_height" - "$menu_height"))
 XP=$X
