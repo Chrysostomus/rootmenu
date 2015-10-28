@@ -6,13 +6,13 @@ fi
 . $HOME/.dmenurc
 
 eval $(xdotool getmouselocation --shell)
-menu_widht=300
+menu_width=300
 #monitor_widht=$(wattr w $(lsw -r))
 #monitor_height=$(wattr h $(lsw -r))
-wattr wh $(lsw -r) | read monitor_widht monitor_height 
+wattr wh $(lsw -r) | read monitor_width monitor_height 
 lines=14
 menu_height=$((echo "$lines" * 23))
-maxx=$(("$monitor_widht" - "$menu_widht"))
+maxx=$(("$monitor_width" - "$menu_width"))
 miny=$PANEL_HEIGHT
 maxy=$(("$monitor_height" - "$menu_height"))
 XP=$(("$X" - 15))
@@ -75,7 +75,7 @@ for (( count = 0 ; count < ${#menu[*]}; count++ )); do
 
 done
 
-select=`echo -e $menu_labels | dmenu -p $title -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB -l $lines -y $YP -x $XP -w $menu_widht`
+select=`echo -e $menu_labels | dmenu -p $title -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB -l $lines -y $YP -x $XP -w $menu_width`
 
 if [ "$select" != "" ]; then
 
