@@ -1,14 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 # Get the necessary info
-# Script copied from https://github.com/tatou-tatou, edited to add options for the menu to use
+# Script copied from https://github.com/tatou-tatou, edited to use wmutils instead of xwinfo and avoid expr to increase performance
 eval $(xdotool getmouselocation --shell)
 IFS=" " read -a window <<< $(wattr whxy $(pfw))
 
 # Distance to each side
-up=$(expr "$Y" - "${window[3]}")
-down=$(expr "${window[3]}" + "${window[1]}" - "$Y" )
-left=$(expr "$X" - "${window[2]}")
-right=$(expr "${window[2]}" + "${window[0]}" - "$X" )
+up=$(("$Y" - "${window[3]}"))
+down=$(("${window[3]}" + "${window[1]}" - "$Y"))
+left=$(("$X" - "${window[2]}"))
+right=$(("${window[2]}" + "${window[0]}" - "$X"))
 
 # Find the minimal distance
 dir_final="up"
