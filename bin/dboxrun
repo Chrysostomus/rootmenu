@@ -11,7 +11,7 @@ wattr wh $(lsw -r) | read monitor_width monitor_height
 #monitor_height=$(wattr h $(lsw -r))
 lines=14
 menu_height=$(($lines * 23"))
-maxx=$(($monitor_widht - $menu_widht))
+maxx=$(($monitor_widht - $menu_width))
 miny=$PANEL_HEIGHT
 maxy=$(($monitor_height - $menu_height))
 XP=$X
@@ -19,4 +19,4 @@ XP=$X
 YP=$Y
 [[ $YP -lt $miny ]] && YP=$miny
 [[ $YP -gt $maxy ]] && YP=$maxy
-dmenu_recent -i -i -l $lines -y $YP -x $XP -w $menu_widht -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB
+dmenu_recent -i -i -l $lines -y $YP -x $XP -w $menu_width -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB
