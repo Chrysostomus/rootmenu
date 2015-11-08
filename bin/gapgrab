@@ -1,0 +1,23 @@
+#!/bin/bash
+#intented to allow resizing bspwm windows by dragging them from window gap. Requires rootmenu
+
+eval $(xdotool getmouselocation --shell)
+IFS=" " read -a window <<< $(wattr whxy $(bspc query -W -w focused))
+
+# location of each side of focused window
+miny=$(expr "${window[3]}" + 5)
+maxy=$(expr "${window[3]}" + "${window[1]}" - 5)
+minx=$(expr "${window[2]}" + 5)
+maxx=$(expr "${window[2]}" + "${window[0]}" - 5)
+
+# set final position to current or at most within window
+XP=$X
+[[ $XP -gt $maxx ]] && XP=$maxx
+[[ $XP -lt $minx ]] && XP=$minx
+YP=$Y
+[[ $YP -lt $miny ]] && YP=$miny
+[[ $YP -gt $maxy ]] && YP=$maxy
+
+# move mouse just inside the focused window and initiate resize combination for 2 seconds
+xdotool mousemove --sync $XP $YP keydown super mousedown 3 &
+sleep 2 && xdotool keyup super mouseup 3
