@@ -1,16 +1,11 @@
-#!/bin/bash
-#
-###
+#!/bin/sh
 if ! [ -f "$HOME/.dmenurc" ]; then
 	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
 fi
 . $HOME/.dmenurc
 
-[[  $BROWSER && ${BROWSER-x} ]] && browser=$BROWSER || browser='midori'
-[[  $GUI_EDITOR && ${GUI_EDITOR-x} ]] && gui_editor=$GUI_EDITOR || gui_editor='gedit'
-
 eval $(xdotool getmouselocation --shell)
-menu_widht=200
+menu_widht=350
 monitor_widht=$(wattr w $(lsw -r))
 monitor_height=$(wattr h $(lsw -r))
 lines=14
@@ -23,17 +18,4 @@ XP=$X
 YP=$Y
 [[ $YP -lt $miny ]] && YP=$miny
 [[ $YP -gt $maxy ]] && YP=$maxy
-
-#DMENU='dmenu $DMENU_OPTIONS'
-choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybinds\nExit" | dmenu -i -l $lines -y $YP -x $XP -w $menu_widht -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB)
-
-case "$choice" in
-  Run) dboxrun & ;;
-  Terminal) $TERMINAL_CMD & ;;
-  Files) spacefm || xdg-open ~ & ;;
-  Browser) $browser & ;;
-  Editor) $gui_editor & ;;
-  PackageManager) $TERMINAL_CMD -e pacli & ;;
-  Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
-  Exit) dlogoutmenu & ;;
-esac
+dmenu_recent -i -i -l $lines -y $YP -x $XP -w $menu_widht -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB
