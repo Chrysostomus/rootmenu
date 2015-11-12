@@ -2,7 +2,7 @@
 # Get the necessary info
 # Script copied from https://github.com/tatou-tatou, edited to add options for the menu to use
 eval $(xdotool getmouselocation --shell)
-IFS=" " read -a window <<< $(wattr whxy $(pfw))
+IFS=" " read -a window <<< $(wattr whxy $(bspc query -W -w focused))
 
 # Distance to each side
 up=$(( $Y - ${window[3]}))
