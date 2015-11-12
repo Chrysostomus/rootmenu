@@ -9,12 +9,12 @@ eval $(xdotool getmouselocation --shell)
 menu_widht=240
 monitor_widht=$(wattr w $(lsw -r))
 monitor_height=$(wattr h $(lsw -r))
-lines=9
-menu_height=$(( $lines * 25 ))
-maxx=$(( $monitor_widht - $menu_widht ))
+lines=14
+menu_height=$(echo "$lines * 23" | bc)
+maxx=$(echo "$monitor_widht - $menu_widht" | bc)
 miny=$PANEL_HEIGHT
-maxy=$(( $monitor_height - $menu_height ))
-XP=$(( $X - 15 ))
+maxy=$(echo "$monitor_height - $menu_height" | bc)
+XP=$(echo "$X - 15" | bc)
 [[ $XP -gt $maxx ]] && XP=$maxx
 YP=$Y
 [[ $YP -lt $miny ]] && YP=$miny
@@ -27,7 +27,7 @@ if [ "$1" == "" ]; then
 #           Main =========================================
                 Window              "$0 Window"
                 Move                "$0 Moveto"
-                ManualSplit         "$0 Manual"
+                ManualSplit         "$0 Split"
                	Close	            "bspc window -c"
 		CloseWindowClass    "xdo close -cd"
 		Hide		    "whid hide"
@@ -35,7 +35,7 @@ if [ "$1" == "" ]; then
     )
 else
     case $1 in
-    window)
+    Window)
         title="Window"
         menu=( \
 #           Web ==========================================
@@ -47,7 +47,7 @@ else
                 Lock              "bspc window -t lock" \
          )
     ;;
-    moveto)
+    Moveto)
         title="Moveto"
         menu=( \
 #           Tools ========================================
@@ -58,7 +58,7 @@ else
                 Promote              "bspc window -w biggest.local" \
          )
     ;;
-    manual)
+    Split)
         title="Manual"
         menu=( \
 #           System =======================================
