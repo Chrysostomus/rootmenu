@@ -14,8 +14,8 @@ maxx=$(( $monitor_widht - $menu_widht ))
 miny=$PANEL_HEIGHT
 maxy=$(( $monitor_height - $menu_height ))
 XP=$X
-[[ $XP -gt $maxx ]] && XP=$maxx
+[ $XP -gt $maxx ] && XP=$maxx
 YP=$Y
-[[ $YP -lt $miny ]] && YP=$miny
-[[ $YP -gt $maxy ]] && YP=$maxy
+[ $YP -lt $miny ] && YP=$miny
+[ $YP -gt $maxy ] && YP=$maxy
 dmenu_recent -i -i -l $lines -y $YP -x $XP -w $menu_widht -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB
