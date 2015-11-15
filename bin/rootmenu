@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #Setup and source configurationfile
 if ! [ -f "$HOME/.rootmenurc" ]; then
 	cat > $HOME/.rootmenurc <<EOL
