@@ -51,11 +51,11 @@ case "$choice" in
   "Close windo class") xdo close -cd & ;;
   Hide) whid hide & ;;
   Urgent) bspc node -f next.urgent & ;;
-  Floating) bspc node -t floating & ;;
+  Floating) bspc node -t '~floating' & ;;
   Monocle) bspc desktop -l next & ;;
-  Fullscreen) bspc node -t fullscreen & ;;
-  Private) bspc node -t private & ;;
-  Lock) bspc node -t lock & ;;
+  Fullscreen) bspc node -t '~fullscreen' & ;;
+  Private) bspc node -g private & ;;
+  Lock) bspc node -g lock & ;;
   Desktop...) bspwm-menu move-to-desktop & ;;
   "Next free desktop") bspc node -d next.free & ;;
   "Last focused desktop") bspc node -d last & ;;
