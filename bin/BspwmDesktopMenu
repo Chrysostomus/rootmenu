@@ -42,8 +42,8 @@ fi
 case "$choice" in
   Flip) $0 Flip & ;;
   Rotate) $0 Rotate & ;;
-  "Balance windows") bspc node -B & ;;
-  "Equalize windows") bspc node -E & ;;
+  "Balance windows") bspc node @/ -B & ;;
+  "Equalize windows") bspc node @/ -E & ;;
   "Rename desktop") bspwm-menu desktop-rename & ;;
   "Add desktop") bspwm-menu desktop-add & ;;
   "Remove desktop") bspwm-menu desktop-remove & ;;
@@ -52,9 +52,9 @@ case "$choice" in
   "Pointer follows focus") toggle-pointer-follows-focus & ;;
   "Show hidden windows") whid dmenu & ;;
   "Enable autogap") autogap & ;;
-  "Left") bspc node -R -90 & ;;
-  "Right") bspc node -R 90 & ;;
-  "Full turn") bspc node -R 90 & ;;
+  "Left") bspc node @/ -R -90 & ;;
+  "Right") bspc node @/ -R 90 & ;;
+  "Full turn") bspc node @/ -R 180 & ;;
   "Vertically") bspc node -F vertical & ;;
   "Horizontally") bspc node -F horizontal & ;;
 esac
