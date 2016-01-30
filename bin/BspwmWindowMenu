@@ -67,5 +67,5 @@ case "$choice" in
   "Split 25%") bspc node -o 0.25 & ;;
   "Split 50%") bspc node -o 0.5 & ;;
   "Split 75%") bspc node -o 0.75 & ;;
-  "Move to split") bspc node -w last.manual & ;;
+  "Move to split") bspc node -n last.\!automatic & ;;
 esac
