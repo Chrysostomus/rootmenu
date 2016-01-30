@@ -16,7 +16,7 @@ desktop-remove)
 ;;
 move-to-desktop)
 	name="$(bspc query -D | dmenu -i -l 10 -y $PANEL_HEIGHT -w 500 $DMENU_OPTIONS -p 'Move to workspace:')"
-	bspc window -d "$name"
+	bspc node -d "$name"
 ;;
 desktop-rename)
 	name="$(dmenu -i -l 10 -y $PANEL_HEIGHT -w 500 $DMENU_OPTIONS -p 'Rename workspace to:')"
