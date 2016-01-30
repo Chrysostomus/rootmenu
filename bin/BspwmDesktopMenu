@@ -55,6 +55,6 @@ case "$choice" in
   "Left") bspc node @/ -R -90 & ;;
   "Right") bspc node @/ -R 90 & ;;
   "Full turn") bspc node @/ -R 180 & ;;
-  "Vertically") bspc node -F vertical & ;;
-  "Horizontally") bspc node -F horizontal & ;;
+  "Vertically") bspc node @/ -F vertical & ;;
+  "Horizontally") bspc node @/ -F horizontal & ;;
 esac
