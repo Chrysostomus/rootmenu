@@ -1,14 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 # Get the necessary info
 # Script copied from https://github.com/tatou-tatou, edited to add options for the menu to use
 eval $(xdotool getmouselocation --shell)
 IFS=" " read -a window <<< $(wattr whxy $(bspc query -N -n focused))
 # Distance to each side
-north=$(( $Y - ${window[3]}))
-south=$(( ${window[3]} + ${window[1]} - $Y ))
-west=$(( $X - ${window[2]}))
-east=$(( ${window[2]} + ${window[0]} - $X ))
-
+north=$((($Y - ${window[3]}) * 100 / ${window[1]} ))
+south=$(((${window[3]} + ${window[1]} - $Y) * 100 / ${window[1]} ))
+west=$((($X - ${window[2]}) * 100 / ${window[0]} ))
+east=$(((${window[2]} + ${window[0]} - $X) * 100 / ${window[1]} ))
 # Find the minimal distance
 dir_final="north"
 for dir in south west east; do
