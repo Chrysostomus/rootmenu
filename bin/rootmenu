@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 #Setup and source configurationfile
 if ! [ -f "$HOME/.rootmenurc" ]; then
 	cat > $HOME/.rootmenurc <<EOL
