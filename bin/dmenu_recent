@@ -10,7 +10,7 @@ fi
 
 #dmenu_cmd="dmenu $DMENU_OPTIONS"
 dmenu_cmd="dmenu $DMENU_OPTIONS"
-terminal="terminal -e"
+terminal="default-terminal -e"
 max_recent=199 # Number of recent commands to track
 
 cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/dmenu-recent"
