@@ -27,11 +27,11 @@ choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybind
 
 case "$choice" in
   Run) exec dboxrun & ;;
-  Terminal) $TERMINAL_CMD & ;;
-  Files) spacefm || xdg-open ~ & ;;
-  Browser) $browser & ;;
-  Editor) $gui_editor & ;;
-  PackageManager) $TERMINAL_CMD -e pacli & ;;
-  Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
+  Terminal) exec default-terminal & ;;
+  Files) xdg-open ~ & ;;
+  Browser) exec $BROWSER & ;;
+  Editor) exec $GUI_EDITOR & ;;
+  PackageManager) exec default-terminal -e pacui & ;;
+  Keybinds) exec xdg-open .config/sxhkd/sxhkdrc & ;;
   Exit) dlogoutmenu & ;;
 esac
