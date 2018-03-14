@@ -6,8 +6,6 @@ if ! [ -f "$HOME/.dmenurc" ]; then
 fi
 . $HOME/.dmenurc
 
-[  $BROWSER && ${BROWSER-x} ] && browser=$BROWSER || browser='midori'
-[  $GUI_EDITOR && ${GUI_EDITOR-x} ] && gui_editor=$GUI_EDITOR || gui_editor='gedit'
 
 eval $(xdotool getmouselocation --shell)
 menu_widht=200
@@ -25,15 +23,15 @@ YP=$Y
 [ $YP -gt $maxy ] && YP=$maxy
 
 #DMENU='dmenu $DMENU_OPTIONS'
-choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybinds\nExit" | dmenu -i -l $lines -y $YP -x $XP -w $menu_widht -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB)
+choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybinds\nExit" | rofi -config "~/.config/rofi/config-monocle.rasi" -theme-str "#window { location: northwest; border: 0; width: 350; x-offset: ${XP}px; y-offset: ${YP}px;}" -dmenu -p "run")
 
 case "$choice" in
   Run) dboxrun & ;;
   Terminal) $TERMINAL_CMD & ;;
   Files) spacefm || xdg-open ~ & ;;
-  Browser) $browser & ;;
-  Editor) $gui_editor & ;;
-  PackageManager) $TERMINAL_CMD -e pacli & ;;
+  Browser) $BROWSER & ;;
+  Editor) $GUI_EDITOR & ;;
+  PackageManager) $TERMINAL_CMD -e pacui & ;;
   Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
   Exit) dlogoutmenu & ;;
 esac
