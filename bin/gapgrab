@@ -2,13 +2,13 @@
 #intented to allow resizing bspwm windows by dragging them from window gap. Requires rootmenu
 
 eval $(xdotool getmouselocation --shell)
-IFS=" " read -a window <<< $(wattr whxy $(bspc query -W -w focused))
+IFS=" " read -a window <<< $(wattr whxy $(bspc query -N -n focused))
 
 # location of each side of focused window
-miny=$(expr "${window[3]}" + 5)
-maxy=$(expr "${window[3]}" + "${window[1]}" - 5)
-minx=$(expr "${window[2]}" + 5)
-maxx=$(expr "${window[2]}" + "${window[0]}" - 5)
+miny=$(expr "${window[3]}" + 20)
+maxy=$(expr "${window[3]}" + "${window[1]}" - 20)
+minx=$(expr "${window[2]}" + 20)
+maxx=$(expr "${window[2]}" + "${window[0]}" - 20)
 
 # set final position to current or at most within window
 XP=$X
@@ -18,6 +18,17 @@ YP=$Y
 [[ $YP -lt $miny ]] && YP=$miny
 [[ $YP -gt $maxy ]] && YP=$maxy
 
-# move mouse just inside the focused window and initiate resize combination for 2 seconds
-xdotool mousemove --sync $XP $YP keydown super mousedown 3 &
-sleep 2 && xdotool keyup super mouseup 3
+buttonrelease() {
+	PAD_ID=$(xinput --list | grep -i -m 1 'touchpad' | grep -o 'id=[0-9]\+' | grep -o '[0-9]\+')
+	MOUSE_ID=$(xinput --list | grep -i -m 1 'mouse' | grep -o 'id=[0-9]\+' | grep -o '[0-9]\+')
+	
+	STATE1=$(xinput --query-state $PAD_ID | grep 'button\[' | sort)
+	while true; do
+	    sleep 0.1
+	    xinput --query-state $PAD_ID | grep -q 'button\[1\]=up'&& xdotool keyup super mouseup 3 && exit
+	    xinput --query-state $MOUSE_ID | grep -q 'button\[1\]=up'&& xdotool keyup super mouseup 3 && exit
+	done
+}
+xdotool mousemove --sync $XP $YP keydown super mousedown 3
+
+buttonrelease
