@@ -26,12 +26,12 @@ YP=$Y
 choice=$(echo -e "Run\nTerminal\nFiles\nBrowser\nEditor\nPackageManager\nKeybinds\nExit" | rofi -config "~/.config/rofi/config-monocle.rasi" -theme-str "#window { location: northwest; border: 0; width: 350; x-offset: ${XP}px; y-offset: ${YP}px;}" -dmenu -p "run")
 
 case "$choice" in
-  Run) dboxrun & ;;
+  Run) exec dboxrun & ;;
   Terminal) $TERMINAL_CMD & ;;
   Files) spacefm || xdg-open ~ & ;;
-  Browser) $BROWSER & ;;
-  Editor) $GUI_EDITOR & ;;
-  PackageManager) $TERMINAL_CMD -e pacui & ;;
+  Browser) $browser & ;;
+  Editor) $gui_editor & ;;
+  PackageManager) $TERMINAL_CMD -e pacli & ;;
   Keybinds) xdg-open .config/sxhkd/sxhkdrc & ;;
   Exit) dlogoutmenu & ;;
 esac
