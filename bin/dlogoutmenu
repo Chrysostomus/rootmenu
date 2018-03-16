@@ -24,7 +24,7 @@ YP=$Y
 [[ $YP -lt $miny ]] && YP=$miny
 [[ $YP -gt $maxy ]] && YP=$maxy
 
-choice=$(echo -e "screenlock\nlogout\nshutdown\nreboot\nsuspend\nhibernate" | dmenu -i -l $lines -y $YP -x $XP -w $menu_widht -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB)
+choice=$(echo -e "screenlock\nlogout\nshutdown\nreboot\nsuspend\nhibernate" | rofi -config "~/.config/rofi/config-monocle.rasi" -theme-str "#window { location: northwest; border: 0; width: 140; x-offset: ${XP}px;}" -dmenu -p "Exit")
 
 case "$choice" in
   screenlock) screenlock & ;;
