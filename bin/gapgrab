@@ -26,8 +26,9 @@ buttonrelease() {
 	STATE1=$(xinput --query-state $PAD_ID | grep 'button\[' | sort)
 	while true; do
 	    sleep 0.1
-	    xinput --query-state $PAD_ID | grep -q 'button\[1\]=up'&& xdotool keyup super mouseup 3 && exit
-	    xinput --query-state $MOUSE_ID | grep -q 'button\[1\]=up'&& xdotool keyup super mouseup 3 && exit
+	    [[ "$PAD_ID" ]] && xinput --query-state $PAD_ID | grep -q 'button\[1\]=down' && continue
+	    [[ "$MOUSE_ID" ]] && xinput --query-state $MOUSE_ID | grep -q 'button\[1\]=down' && continue
+	    xdotool keyup super mouseup 3 && exit
 	done
 }
 xdotool mousemove --sync $XP $YP keydown super mousedown 3
